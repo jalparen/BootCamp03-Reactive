@@ -46,7 +46,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Mono<Product> getById(String id) {
-        return null;
+        return this.productRepository.findById(id)
+                .switchIfEmpty(Mono.error(new RuntimeException("No se encontro el producto")))
+                .map(ProductMapper::toApi);
     }
 
     @Override

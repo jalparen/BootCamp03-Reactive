@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
@@ -26,7 +27,8 @@ public class ProductsApiDelegateImpl implements ProductsApiDelegate {
   @Override
   public Mono<ResponseEntity<Flux<Product>>> listProducts(
       String category, BigDecimal maxPrice, Integer page, Integer size, ServerWebExchange exchange) {
-    return Mono.just()
+    return Mono.just(this.service.list(category,maxPrice,page,size))
+            .map(x -> ResponseEntity.status(HttpStatus.OK).body(x));
   }
 
   @Override
