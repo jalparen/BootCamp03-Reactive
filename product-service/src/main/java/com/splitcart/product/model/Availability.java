@@ -2,11 +2,19 @@
 package com.splitcart.product.model;
 
 
-/*
-Agregar las anotaciones de lombok para getters, setters y constructores
- */
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Availability {
 
-  private String sku;
-  private int available;
+    private String sku;
+    private Integer available;
 }

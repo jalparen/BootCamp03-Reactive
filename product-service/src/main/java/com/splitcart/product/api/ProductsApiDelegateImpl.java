@@ -19,14 +19,14 @@ import reactor.core.publisher.Mono;
  */
 @Component
 @RequiredArgsConstructor
-public class ProductsApiDelegateImpl  {
+public class ProductsApiDelegateImpl implements ProductsApiDelegate {
 
   private final ProductService service;
 
   @Override
   public Mono<ResponseEntity<Flux<Product>>> listProducts(
       String category, BigDecimal maxPrice, Integer page, Integer size, ServerWebExchange exchange) {
-    return null;
+    return Mono.just()
   }
 
   @Override
