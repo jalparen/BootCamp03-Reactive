@@ -27,13 +27,16 @@ public class ProductsApiDelegateImpl implements ProductsApiDelegate {
   @Override
   public Mono<ResponseEntity<Flux<Product>>> listProducts(
       String category, BigDecimal maxPrice, Integer page, Integer size, ServerWebExchange exchange) {
-    return Mono.just(this.service.list(category,maxPrice,page,size))
-            .map(x -> ResponseEntity.status(HttpStatus.OK).body(x));
+    int pageNumber = page == null ? 0 : page;
+    int pageSize = size == null ? 10 : size;
+    return Mono.just(
+        ResponseEntity.status(HttpStatus.OK)
+            .body(service.list(category, maxPrice, pageNumber, pageSize)));
   }
 
   @Override
   public Mono<ResponseEntity<Product>> getProductById(String id, ServerWebExchange exchange) {
-    return null;
+    return service.getById(id).map(product -> ResponseEntity.status(HttpStatus.OK).body(product));
   }
 
   @Override
