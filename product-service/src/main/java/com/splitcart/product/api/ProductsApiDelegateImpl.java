@@ -42,6 +42,11 @@ public class ProductsApiDelegateImpl implements ProductsApiDelegate {
   @Override
   public Mono<ResponseEntity<Flux<Availability>>> getAvailability(
       String ids, ServerWebExchange exchange) {
-    return null;
+    List<String> skus =
+        Arrays.stream(ids.split(","))
+            .map(String::trim)
+            .filter(sku -> !sku.isEmpty())
+            .toList();
+    return Mono.just(ResponseEntity.status(HttpStatus.OK).body(service.availability(skus)));
   }
 }
