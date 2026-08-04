@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="maven-antrun-" default="main">
+  <target name="main">
+    <delete dir="C:\Users\jalparen\OneDrive - NTT DATA EMEAL\Documentos\Bootcamp\Reactive\product-service\target/generated-sources/openapi/src/test" />
+  </target>
+</project>
